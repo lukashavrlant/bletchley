@@ -9,7 +9,7 @@ module.exports =
     occ
 
   similarity: (text, langstats) ->
-    freq = this.occurences text
+    freq = @occurences text
     score = 0
     for k, v of freq
       score += Math.pow(v - (langstats.frequency[k] or 0), 2)
@@ -19,7 +19,7 @@ module.exports =
     meta = []
     [score, index] = [10000, 0]
     for text, i in texts
-      tempsim = this.similarity text, langstats
+      tempsim = @similarity text, langstats
       meta.push [text.slice(0,42), tempsim]
       if tempsim < score
         score = tempsim

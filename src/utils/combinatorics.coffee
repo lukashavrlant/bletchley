@@ -3,7 +3,7 @@ Combinatorics module
 ### 
 module.exports =
   combinations: (list, n) ->
-    combs = this._combinations list.length, n
+    combs = @_combinations list.length, n
     for indices in combs
       for i in indices
         list[i]
@@ -11,8 +11,8 @@ module.exports =
   repcombinations: (arr, k) ->
     return [ [] ] if k == 0
     return [] if arr.length == 0
-    chead = ([arr[0]].concat combo for combo in this.repcombinations arr, k-1)
-    combos_sans_head = this.repcombinations arr[1...], k
+    chead = ([arr[0]].concat combo for combo in @repcombinations arr, k-1)
+    combos_sans_head = @repcombinations arr[1...], k
     chead.concat combos_sans_head
 
   permutation: (input) ->
@@ -44,6 +44,6 @@ module.exports =
         break if combo.length == 0
         i = combo.pop() + 1
       if combo.length == p
-        combos.push this._clone combo
+        combos.push @_clone combo
         i = combo.pop() + 1
     combos

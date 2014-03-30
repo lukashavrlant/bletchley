@@ -13,10 +13,10 @@ module.exports =
     string.alphabet.slice(26 - code) + string.alphabet.slice(0, 26 - code)
 
   encrypt: (opentext, key) ->
-    string.replaceChars opentext, this.makeEnTable key
+    string.replaceChars opentext, @makeEnTable key
 
   decrypt: (ciphertext, key) ->
-    string.replaceChars ciphertext, this.makeDecTable key
+    string.replaceChars ciphertext, @makeDecTable key
 
   getLine: (text, firstBold = false) ->
     if firstBold
@@ -25,4 +25,4 @@ module.exports =
       "<td>Vstup</td>" + ("<td>#{c}</td>" for c in text).join ''
 
   showTable: (key) ->
-    "<tr>" + this.getLine(string.alphabet) + "<tr>" + this.getLine(this.encrypt(string.alphabet, key), true)
+    "<tr>" + @getLine(string.alphabet) + "<tr>" + @getLine(@encrypt(string.alphabet, key), true)
