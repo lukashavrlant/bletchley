@@ -14,19 +14,15 @@ mono = require '../ciphers/mono'
 
 string = require '../utils/string'
 statistics = require '../utils/statistics'
+combinatorics = require '../utils/combinatorics'
 
 
 ###
 GUI module
 ###
-encrypt = (fun, inputtext, key, outputel) ->
-  document.getElementById(outputel).innerHTML = fun(inputtext, key)
-
 highlight = (text, word, index, color, padding = 15) ->
   startindex = Math.max index - padding, 0
   "&hellip;" + text.slice(startindex, index) + "<b style='color: #{color}'>" + text.slice(index, index+word.length) + "</b>" + text.slice(index+word.length, index+word.length+padding) + "&hellip;"
-
-round = (num, threshold) -> Math.round(num * threshold) / threshold
 
 initCrackCaesar = () ->
   document.getElementById('brute-caesar-crack').onclick = () ->
@@ -357,7 +353,7 @@ initFriedman = () ->
           show_ioc = (klen) ->
             splitted = viglength.splitText ciphertext, klen
             iocs = splitted.map (text) -> friedman.ioc text
-            iocs = iocs.map (num) -> round num, round_threshold
+            iocs = iocs.map (num) -> _.round num, round_threshold
             temphtml += "<table class='with-border with-margin'>"
             temphtml += "<tr><th>Blok textu</th><th>Index koinc.</th></tr>"
             for i in [0...klen]
@@ -365,7 +361,7 @@ initFriedman = () ->
             temphtml += "</table>"
             temphtml += "<p>Průměrnou koincidenci vypočítáme jako aritmetický průměr všech #{klen} hodnot (to může být mírně nepřesné, ale výsledná chyba bude nevýznamná):</p><p>"
             temphtml += "(" + iocs.join(' + ') + ") / #{klen} = "
-            temphtml += "<b>" + round(_.reduce(iocs, ((a, b) -> a + b)) / klen, round_threshold) + "</b></p>"
+            temphtml += "<b>" + _.round(_.reduce(iocs, ((a, b) -> a + b)) / klen, round_threshold) + "</b></p>"
           show_ioc 4
           temphtml += "<p>A pro délku například 7:</p>"
           show_ioc 7
@@ -377,7 +373,7 @@ initFriedman = () ->
           for pair in result.indices
             # console.log pair[1], result.keylen, pair[1] == result.keylen
             style = if pair[1] == result.keylen then "color: red; font-weight: bold;" else ""
-            temphtml += "<tr style='#{style}'><td>#{pair[1]}</td><td>#{round pair[0], round_threshold}</td></tr>"
+            temphtml += "<tr style='#{style}'><td>#{pair[1]}</td><td>#{_.round pair[0], round_threshold}</td></tr>"
           temphtml += "</table>"
 
           temphtml += "<p>Dále už jen rozdělíme šifrový text do #{result.keylen} bloků a prolomíme <a href='./kryptoanalyza-vigenerovy-sifry'>standardním algoritmem pro prolomení šifry se znalostí klíče</a>.</p>"
@@ -405,10 +401,6 @@ if typeof document != 'undefined'
     key = document.body.id.replace('strana-', '')
     if router[key]
       router[key]()
-
-
-
-
 
 
 

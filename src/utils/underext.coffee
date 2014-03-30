@@ -6,3 +6,6 @@ _.mixin
     for x in arr
       s += x
     s
+    
+  round: (num, threshold) -> 
+    Math.round(num * threshold) / threshold
