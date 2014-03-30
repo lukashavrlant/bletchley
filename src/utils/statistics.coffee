@@ -1,0 +1,4 @@
+module.exports =
+  topwords: ["ktery","jeho","svuj","jako","moci","tento","kdyz","vsechen","nebo","rici","jeden","jenz","clovek","stat","muset","velky","chtit","take","jeste","pred","vsak","vedet","novy","hodne","podle","dalsi","cely","jiny","prvni","mezi","tady","doba","kazdy","druhy","misto","dobry","takovy","strana","protoze","zacit","neco","zivot","videt","rikat","zeme","dite","maly","ruka","svet","dostat","prace","nejaky","proto"]
+  frequency: {"a":9.130143,"c":3.386033,"b":1.668662,"e":10.873935,"d":3.739192,"g":0.281757,"f":0.288824,"i":7.350494,"h":2.196011,"k":3.790121,"j":2.232187,"m":3.402485,"l":4.322769,"o":8.12584,"n":6.530858,"q":0.004768,"p":3.308585,"s":5.317375,"r":4.615702,"u":3.775443,"t":5.659012,"w":0.062058,"v":4.057338,"y":2.655102,"x":0.069438,"z":3.155869}
+  ioc: 0.0583
