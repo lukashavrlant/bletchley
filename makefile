@@ -7,6 +7,6 @@ core:
 workers:
 	/usr/bin/env browserify ./js/browser/workers.js > ./bin/workers.js
 
-.PHONY: test
-.PHONY: core
-.PHONY: workers
+all: core workers
+
+.PHONY: test core workers all
